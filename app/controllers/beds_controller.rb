@@ -1,6 +1,11 @@
 class BedsController < ApplicationController
   def index
-    @beds = Bed.all
+    @beds = Bed.all.order(:created_at)
+  end
+
+  def guests_index
+    @bed = Bed.find(params[:id])
+    @bed_guests = Bed.find(params[:id]).guests
   end
 
   def show
