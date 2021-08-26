@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2021_08_25_000134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
   create_table "bakeries", force: :cascade do |t|
     t.string "name"
@@ -23,6 +25,7 @@ ActiveRecord::Schema.define(version: 2021_08_25_000134) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
 
   create_table "goods", force: :cascade do |t|
     t.string "name"
@@ -36,4 +39,27 @@ ActiveRecord::Schema.define(version: 2021_08_25_000134) do
   end
 
   add_foreign_key "goods", "bakeries"
+end
+
+ActiveRecord::Schema.define(version: 2021_08_24_221856) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  create_table "beds", force: :cascade do |t|
+    t.string "name"
+    t.boolean "occupied"
+    t.integer "guest_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+  create_table "guests", force: :cascade do |t|
+    t.bigint "bed_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "rent"
+    t.boolean "visiting"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bed_id"], name: "index_guests_on_bed_id"
+  end
+  add_foreign_key "guests", "beds"
 end

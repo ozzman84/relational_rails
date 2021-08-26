@@ -1,0 +1,14 @@
+<h1>All Beds</h1>
+
+<% @beds.each do |bed| %>
+  <h3><a href="/beds/<%= bed.id %>"><%= bed.name %></a></h3>
+  <ul>
+    <li>Occupied: <%= bed.occupied %></li>
+    <li>Guest Availability: <%= bed.guest_count %></li>
+    <li>Total Guests Available: <%= bed.guests.count %></li>
+    <li>Created at: <%= bed.created_at %></li>
+    <li>Updated at: <%= bed.updated_at %></li>
+  </ul>
+<% end %>
+
+<h6><a href="/beds/new">New Bed</a></h6>
