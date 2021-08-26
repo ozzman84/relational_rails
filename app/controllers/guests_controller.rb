@@ -12,14 +12,14 @@ class GuestsController < ApplicationController
   end
 
   def create
-    @beds = Beds.find(params[:id])
-    guest = @beds.guests.create!({
+    @bed = Beds.find(params[:id])
+    guest = @bed.guests.create!({
       first_name: params[:first_name],
       last_name: params[:last_name],
       rent: params[:rent],
       visiting: params[:visiting]
     })
     guest.save
-    redirect_to "/beds/#{@beds}/guests"
+    redirect_to "/beds/#{@bed.id}/guests"
   end
 end
