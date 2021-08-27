@@ -25,5 +25,15 @@ RSpec.describe 'Bakery Goods index' do
     visit "/bakeries/#{@bakery_1.id}/goods"
 
     expect(page).to have_content(@bakery_1.name)
+    expect(page).to have_content(@good_1.name)
+    expect(page).to have_content(@good_1.category)
+    expect(page).to have_content(@good_1.days_old)
+    expect(page).to have_content(@good_1.gluten_free)
+    expect(page).to have_content(@good_1.bakery_id)
+    expect(page).to have_content(@good_2.name)
+    expect(page).to have_content(@good_2.category)
+    expect(page).to have_content(@good_2.days_old)
+    expect(page).to have_content(@good_2.gluten_free)
+    expect(page).to have_content(@good_2.bakery_id)
   end
 end
