@@ -23,5 +23,7 @@ RSpec.describe 'Bakery Goods index' do
 
   it 'shows the name of all goods for a bakery ' do
     visit "/bakeries/#{@bakery_1.id}/goods"
+
+    expect(page).to have_content(@bakery_1.name)
   end
 end
