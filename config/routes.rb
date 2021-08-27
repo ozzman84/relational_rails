@@ -15,4 +15,10 @@ Rails.application.routes.draw do
     #bakery
 
   get '/bakeries', to: 'bakeries#index'
+  get '/bakeries/:id', to: 'bakeries#show'
+
+  #goods
+
+  get '/goods', to: 'goods#index'
+  get '/goods/:id', to: 'goods#show'
 end

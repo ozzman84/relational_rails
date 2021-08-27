@@ -13,10 +13,12 @@ RSpec.describe 'Parents name index', type: :feature do
     review: 4
     )
   end
-  it "can see all names of the parent index" do
+  it 'shows all the attributes for the bakery' do
+    visit "/bakeries/#{@bakery_1.id}"
 
-    visit "/bakeries"
     expect(page).to have_content(@bakery_1.name)
-    expect(page).to have_content(@bakery_2.name)
+    expect(page).to have_content(@bakery_1.id)
+    expect(page).to have_content(@bakery_1.delivery)
+    expect(page).to have_content(@bakery_1.review)
   end
 end

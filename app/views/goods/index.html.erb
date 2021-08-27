@@ -1,0 +1,10 @@
+<h1>All Goods</h1>
+<% @goods.each do |good| %>
+<h3><%= good.name %></h3>
+<ul>
+  <li><%= good.category %></li>
+  <li><%= good.days_old %></li>
+  <li><%= good.gluten_free %></li>
+  <li><%= good.bakery_id %></li>
+</ul>
+<% end %>
