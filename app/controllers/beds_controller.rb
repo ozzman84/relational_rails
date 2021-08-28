@@ -1,11 +1,11 @@
 class BedsController < ApplicationController
   def index
-    @beds = Bed.all.order(:created_at)
+    @beds = Bed.all.order(:created_at) #move order to Model.
   end
 
   def guests_index
     @bed = Bed.find(params[:id])
-    @bed_guests = Bed.find(params[:id]).guests
+    @bed_guests = Bed.find(params[:id]).guests #refactor and move to BedGuestsController
   end
 
   def show
@@ -13,7 +13,6 @@ class BedsController < ApplicationController
   end
 
   def new
-
   end
 
   def create
