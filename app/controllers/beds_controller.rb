@@ -8,20 +8,20 @@ class BedsController < ApplicationController
     @bed_guests = Bed.find(params[:id]).guests #refactor and move to BedGuestsController
   end
 
+  def new
+    @bed = Bed.new
+  end
+
   def show
     @bed = Bed.find(params[:id])
   end
 
-  def new
-  end
-
   def create
-    bed = Bed.new({
-      name: params[:bed][:name],
-      occupied: params[:bed][:occupied],
-      guest_count: params[:bed][:guest_count],
+    bed = Bed.create!({
+      name: params[:name],
+      occupied: params[:occupied],
+      guest_count: params[:guest_count]
     })
-    bed.save
     redirect_to "/beds"
   end
 end

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   ##Beds
   get '/beds', to: 'beds#index'
+  get '/beds/new', to: 'beds#new'
+  post '/beds', to: 'beds#create'
   get '/beds/:id', to: 'beds#show'
 
   ##BedGuests
