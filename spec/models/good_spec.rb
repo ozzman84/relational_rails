@@ -8,7 +8,7 @@ describe Good, type: :model do
   describe "validations" do
     it { should validate_presence_of(:gluten_free)}
     it { should validate_presence_of(:name)}
-    it { should validate_presence_of(:type)}
+    it { should validate_presence_of(:category)}
     it { should validate_presence_of(:days_old)}
   end
 end

@@ -1,15 +1,13 @@
-require "rails_helper"
+require 'rails_helper'
 
-describe Bakery, type: :model do
-  describe "validations" do
-    it { should have_many(:goods) }
+describe Bakery, type: :model  do
+    it { should have_many (:goods)}
     it { should validate_presence_of(:name)}
     it { should validate_presence_of(:city)}
     it {should validate_presence_of(:delivery)}
     it { should validate_presence_of(:review)}
-  end
 
-  describe '#order' do
+    describe '#ordered_creation' do
     it 'should return an ordered list of bakeries based on most recently created_at' do
       bakery_1 = Bakery.create!(name: "Taste of Denmark",
         city: "Lakewood",
