@@ -5,5 +5,7 @@ class Bakery < ActiveRecord::Base
   validates :delivery, presence: true #may need to refactor since this is a boolean
   validates :review, presence: true
 
-  binding.pry
+  def self.ordered_creation
+    self.order(created_at: :desc)
+  end
 end
