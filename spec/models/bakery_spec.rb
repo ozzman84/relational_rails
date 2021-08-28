@@ -19,6 +19,7 @@ describe Bakery, type: :model  do
       delivery: true,
       review: 4
       )
+      bakery_1.save
       expected = [bakery_2, bakery_1]
       expect(Bakery.ordered_creation).to eq(expected)
     end
