@@ -16,7 +16,8 @@ RSpec.describe 'create a bakery' do
     fill_in('delivery', with: true)
     fill_in('review', with: 5)
     click_button 'Create Bakery'
+    expect(current_path).to eq("/bakeries")
+    expect(page).to have_content('Sugar Bakeshop')
 
-    
   end
 end

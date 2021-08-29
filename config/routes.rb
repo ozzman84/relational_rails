@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get '/bakeries', to: 'bakeries#index'
   get '/bakeries/new', to: 'bakeries#new'
+  post '/bakeries', to: 'bakeries#create'
   get '/bakeries/:id', to: 'bakeries#show'
 
 

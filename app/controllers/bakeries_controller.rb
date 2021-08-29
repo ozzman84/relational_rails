@@ -9,4 +9,13 @@ class BakeriesController < ApplicationController
 
   def new
   end
+
+  def create
+    bakery = Bakery.create(bakery_params)
+    redirect_to '/bakeries'
+  end
+
+  def bakery_params
+    params.permit(:name,:city,:delivery,:review)
+  end
 end
