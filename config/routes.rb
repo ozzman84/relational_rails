@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/bakeries/new', to: 'bakeries#new'
   post '/bakeries', to: 'bakeries#create'
   get '/bakeries/:id', to: 'bakeries#show'
+  get '/bakeries/:id/edit', to: 'bakeries#edit'
+  patch '/bakeries/:id', to: 'bakeries#update'
 
 
 

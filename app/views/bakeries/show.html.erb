@@ -1,5 +1,6 @@
 <%=link_to "Goods Index", "/goods" %>
 <%= link_to "Bakeries Index", "/bakeries" %>
+<%= link_to "Update Bakery", "/bakeries/#{@bakery.id}/edit"%>
 <h3><a href="/bakeries/<%=@bakery.id%>/goods"><%= @bakery.name%></a></h3>
 <h1><%= @bakery.name%></h1>
 <ul>
