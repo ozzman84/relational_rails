@@ -1,6 +1,6 @@
-<a href="/goods">Goods Index</a>
-<a href="/bakeries"> Bakeries Index</a>
-<a href="/bakery/<%= @bakery.id %>/goods"><%= @good.name %></a>
+<%=link_to "Goods Index", "/goods" %>
+<%= link_to "Bakeries Index", "/bakeries" %>
+<h3><a href="/bakeries/<%=@bakery.id%>/goods"><%= @bakery.name%></a></h3>
 <h1><%= @bakery.name%></h1>
 <ul>
   <li><%= @bakery.id %></li>

@@ -1,5 +1,5 @@
-<a href="/goods">Goods Index</a>
-<a href="/bakeries">Bakeries Index</a>
+<%=link_to "Goods Index", "/goods" %>
+<%= link_to "Bakeries Index", "/bakeries" %>
 <h1><%= @bakery.name %></h1>
 <ul>
   <% @goods.each do |good| %>

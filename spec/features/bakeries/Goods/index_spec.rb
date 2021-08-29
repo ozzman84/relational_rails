@@ -36,4 +36,22 @@ RSpec.describe 'Bakery Goods index' do
     expect(page).to have_content(@good_2.gluten_free)
     expect(page).to have_content(@good_2.bakery_id)
   end
+
+  it 'has a link to its child index' do
+    visit '/bakeries'
+    expect(page).to have_link('Goods Index')
+
+    click_link('Goods Index')
+    expect(current_path).to eq("/goods")
+    expect(page).to have_content('All Goods')
+    expect(page).to have_content(@good_1.name)
+  end
+  it 'has a link at the top that takes users to the parent index' do
+    visit "/goods"
+    expect(page).to have_link("Bakeries Index")
+    click_link("Bakeries Index")
+    expect(current_path).to eq("/bakeries")
+    expect(page).to have_content("All Bakeries")
+    expect(page).to have_content(@bakery_1.name)
+  end
 end

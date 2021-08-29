@@ -13,6 +13,11 @@ RSpec.describe "goods index page" do
     gluten_free: true,
     bakery_id: @bakery_1.id
   )
+  @bakery_1 = Bakery.create!(name: "Taste of Denmark",
+    city: "Lakewood",
+    delivery: true,
+    review: 5
+  )
 end
 
 it 'can see all the goods in the index' do
@@ -22,5 +27,14 @@ it 'can see all the goods in the index' do
   expect(page).to have_content(@good_1.days_old)
   expect(page).to have_content(@good_1.gluten_free)
   expect(page).to have_content(@good_1.bakery_id)
+  end
+
+  it 'has a link at the top that takes users to the parent index' do
+    visit "/goods"
+    expect(page).to have_link("Bakeries Index")
+    click_link("Bakeries Index")
+    expect(current_path).to eq("/bakeries")
+    expect(page).to have_content("All Bakeries")
+    expect(page).to have_content(@bakery_1.name)
   end
 end

@@ -15,7 +15,10 @@ Rails.application.routes.draw do
     #bakery
 
   get '/bakeries', to: 'bakeries#index'
+  get '/bakeries/new', to: 'bakeries#new'
   get '/bakeries/:id', to: 'bakeries#show'
+
+
 
   #goods
 

@@ -24,8 +24,4 @@ require 'rails_helper'
       expect(Bakery.ordered_creation).to eq(expected)
       end
     end
-
-    it 'has a link to the goods index' do
-      expect(page).to have_link("All Goods")
-    end
   end
