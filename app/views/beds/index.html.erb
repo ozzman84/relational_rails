@@ -2,6 +2,7 @@
 
 <% @beds.each do |bed| %>
   <h3><a href="/beds/<%= bed.id %>"><%= bed.name %></a></h3>
+  <h6><%= button_to "Edit #{bed.name}", "/beds/#{bed.id}/edit", method: :get %></h6>
   <ul>
     <li>Occupied: <%= bed.occupied %></li>
     <li>Guest Availability: <%= bed.guest_count %></li>
