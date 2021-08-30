@@ -1,0 +1,9 @@
+<%= form_with url: "/beds/#{@bed.id}", method: :patch, local: true do |form| %>
+  <%= form.label :name %><br/>
+  <%= form.text_field :name %><br/>
+  <%= form.label :occupied %><br/>
+  <%= form.text_field :occupied %><br/>
+  <%= form.label :guest_count %><br/>
+  <%= form.number_field :guest_count %><br/><br/>
+  <%= form.submit "Update #{@bed.name}" %>
+<% end %>

@@ -1,0 +1,11 @@
+<%= form_with url: "/beds/#{@bed.id}/guests", method: :post, local: true do |f| %>
+  <%= f.label :first_name %><br/>
+  <%= f.text_field :first_name %><br/>
+  <%= f.label :last_name %><br/>
+  <%= f.text_field :last_name %><br/>
+  <%= f.label :rent %><br/>
+  <%= f.number_field :rent %><br/>
+  <%= f.label :visiting %><br/>
+  <%= f.text_field :visiting %><br/><br/>
+  <%= f.submit "Create Guest"%>
+<% end %>
