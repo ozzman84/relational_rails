@@ -35,6 +35,8 @@ RSpec.describe 'good edit' do
   click_link('Update Good')
 
   fill_in('category', with: 'Pastry')
+  fill_in('name', with: 'Cinnamon Roll')
+  fill_in('days_old', with: 1)
   click_button 'Update Good'
   expect(current_path).to eq("/goods/#{good_1.id}")
   expect(page).to have_content('Pastry')
