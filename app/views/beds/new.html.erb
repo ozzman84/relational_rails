@@ -1,9 +1,9 @@
 <%= form_with url: '/beds', method: :post, local: true do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-  <%= form.label :occupied %>
-  <%= form.text_field :occupied %>
-  <%= form.label :guest_count %>
-  <%= form.number_field :guest_count %>
-  <%= form.submit "Create Beds" %>
+  <%= form.label :name %><br/>
+  <%= form.text_field :name %><br/>
+  <%= form.label :occupied %><br/>
+  <%= form.text_field :occupied %><br/>
+  <%= form.label :guest_count %><br/>
+  <%= form.number_field :guest_count %><br/><br/>
+  <%= form.submit "Create Bed" %>
 <% end %>

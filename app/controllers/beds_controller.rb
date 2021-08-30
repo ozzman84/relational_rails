@@ -17,11 +17,22 @@ class BedsController < ApplicationController
   end
 
   def create
-    bed = Bed.create!({
-      name: params[:name],
-      occupied: params[:occupied],
-      guest_count: params[:guest_count]
-    })
+    bed = Bed.create!(bed_params)
     redirect_to "/beds"
+  end
+
+  def edit
+    @bed = Bed.find(params[:id])
+  end
+
+  def update
+    bed = Bed.find(params[:id])
+    bed.update(bed_params)
+    redirect_to '/beds'
+  end
+
+private
+  def bed_params
+    params.permit(:name, :occupied, :guest_count)
   end
 end

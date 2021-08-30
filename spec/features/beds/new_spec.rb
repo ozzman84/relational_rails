@@ -14,14 +14,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Bed creation page' do
-  it 'links to new page form from parent index' do
+  it 'links to new page form via parent index' do
     visit '/beds'
 
     click_link('New Bed')
     expect(current_path).to eq('/beds/new')
   end
 
-  it 'can create a new artist' do
+  it 'can create a new bed' do
     visit '/beds/new'
 
     fill_in('Name', with: 'Test Master Bed')
