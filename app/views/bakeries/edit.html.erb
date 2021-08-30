@@ -1,0 +1,11 @@
+<%= form_with url:"/bakeries/#{@bakery.id}", method: :patch, local: true do |form| %>
+<%= form.label :name %>
+<%= form.text_field :name %>
+<%= form.label :city %>
+<%= form.text_field :city %>
+<%= form.label :delivery %>
+<%= form.check_box :delivery, {}, true, false  %>
+<%= form.label :review %>
+<%= form.text_field :review %>
+<%= form.submit 'Update Bakery' %>
+<% end %>

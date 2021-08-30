@@ -28,4 +28,24 @@ Rails.application.routes.draw do
 
   ##bakery
   get '/bakeries', to: 'bakeries#index'
+  get '/bakeries/new', to: 'bakeries#new'
+  post '/bakeries', to: 'bakeries#create'
+  get '/bakeries/:id', to: 'bakeries#show'
+  get '/bakeries/:id/edit', to: 'bakeries#edit'
+  patch '/bakeries/:id', to: 'bakeries#update'
+
+
+
+  #goods
+
+  get '/goods', to: 'goods#index'
+  get '/goods/:id', to: 'goods#show'
+  get '/goods/:id/edit', to: 'goods#edit'
+  patch '/goods/:id', to: 'goods#update'
+
+
+  #bakerygoods\
+  get '/bakeries/:id/goods', to: 'bakery_goods#index'
+  get '/bakeries/:id/goods/new', to: 'bakery_goods#new'
+  post '/bakeries/:id/goods', to: 'bakery_goods#create'
 end

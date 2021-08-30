@@ -1,0 +1,11 @@
+<%=link_to "Goods Index", "/goods" %>
+<%= link_to "Bakeries Index", "/bakeries" %>
+<%= link_to "Update Good", "/goods/#{@good.id}/edit" %>
+<h1><%=@good.name%></h1>
+<ul>
+  <li><%= @good.id %></li>
+  <li><%= @good.category %></li>
+  <li><%= @good.days_old %></li>
+  <li><%= @good.gluten_free%></li>
+  <li><%= @good.bakery_id %></li>
+</ul>
