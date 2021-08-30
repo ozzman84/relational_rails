@@ -21,7 +21,9 @@ RSpec.describe 'bakery edit' do
     visit "/bakeries/#{bakery.id}"
     expect(page).to have_content('Taste of Denmar')
     click_link 'Update Bakery'
-    fill_in 'Name', with: 'Taste of Denmark'
+    fill_in('name', with: 'Taste of Denmark')
+    fill_in('city', with: 'Lakewood')
+    fill_in('review', with: 5)
     click_button 'Update Bakery'
     expect(current_path).to eq("/bakeries")
     expect(page).to have_content('Taste of Denmark')

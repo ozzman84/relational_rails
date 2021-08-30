@@ -24,19 +24,19 @@ RSpec.describe 'good edit' do
       delivery: true,
       review: 5
     )
-    good_1 = Good.create!(name: "Cinnamon Rol",
-    category: "Pastry",
-    days_old: 0,
+    good_1 = Good.create!(name: "Cinnamon Roll",
+    category: "Pastr",
+    days_old: 1,
     gluten_free: true,
     bakery_id: bakery_1.id
   )
   visit "/goods/#{good_1.id}"
-  expect(page).to have_content('Cinnamon Rol')
+  expect(page).to have_content('Pastr')
   click_link('Update Good')
 
-  fill_in 'Name', with: 'Cinnamon Roll'
+  fill_in('category', with: 'Pastry')
   click_button 'Update Good'
   expect(current_path).to eq("/goods/#{good_1.id}")
-  expect(page).to have_content('Cinnamon Roll')
+  expect(page).to have_content('Pastry')
   end
 end

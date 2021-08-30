@@ -44,10 +44,10 @@ RSpec.describe 'the good creation' do
   )
 
   visit "/bakeries/#{bakery_1.id}/goods/new"
-  fill_in('Name', with: 'Sugar Cookie')
-  fill_in('Category', with: 'Cookie')
-  fill_in('days_old', with: '2')
-  fill_in('gluten_free', with: 'true')
+  fill_in('name', with: 'Sugar Cookie')
+  fill_in('category', with: 'Cookie')
+  fill_in('days_old', with: 2)
+  check('gluten_free', with: true)
   click_button('Create Good')
 
   expect(current_path).to eq("/bakeries/#{bakery_1.id}/goods")

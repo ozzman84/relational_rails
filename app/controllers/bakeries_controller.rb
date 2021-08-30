@@ -11,7 +11,7 @@ class BakeriesController < ApplicationController
   end
 
   def create
-    bakery = Bakery.create(bakery_params)
+    bakery = Bakery.create!(bakery_params)
     redirect_to '/bakeries'
   end
 
@@ -21,7 +21,7 @@ class BakeriesController < ApplicationController
 
   def update
     bakery = Bakery.find(params[:id])
-    bakery.update(bakery_params)
+    bakery.update!(bakery_params)
     redirect_to '/bakeries'
   end
 

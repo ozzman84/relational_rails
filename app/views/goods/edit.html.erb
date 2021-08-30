@@ -1,5 +1,11 @@
 <%= form_with url: "/goods/#{@good.id}", method: :patch, local: true do |form| %>
 <%= form.label :name %>
 <%= form.text_field :name %>
-<%= form.submit 'Update Good' %>
+<%= form.label :category %>
+<%= form.text_field :category %>
+<%= form.label :days_old, "Days Old" %>
+<%= form.number_field :days_old %>
+<%= form.label :gluten_free, "Gluten Free" %>
+<%= form.check_box :gluten_free, {}, true, false  %>
+<%= form.submit "Update Good", class: 'button' %>
 <% end %>

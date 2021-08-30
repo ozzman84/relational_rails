@@ -4,8 +4,8 @@
 <%= form.label :city %>
 <%= form.text_field :city %>
 <%= form.label :delivery %>
-<%= form.text_field :delivery %>
+<%= form.check_box :delivery, {}, true, false%>
 <%= form.label :review %>
-<%= form.text_field :review %>
+<%= form.number_field :review %>
 <%=form.submit "Create Bakery" %>
 <% end %>
