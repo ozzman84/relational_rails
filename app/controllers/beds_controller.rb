@@ -5,7 +5,7 @@ class BedsController < ApplicationController
 
   def guests_index
     @bed = Bed.find(params[:id])
-    @bed_guests = Bed.find(params[:id]).guests #refactor and move to BedGuestsController
+    @bed_guests = Bed.find(params[:id]).guests.currently_visiting #refactor and move to BedGuestsController
   end
 
   def new
@@ -31,7 +31,8 @@ class BedsController < ApplicationController
     redirect_to '/beds'
   end
 
-private
+  private
+
   def bed_params
     params.permit(:name, :occupied, :guest_count)
   end
