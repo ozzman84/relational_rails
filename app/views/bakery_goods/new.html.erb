@@ -1,0 +1,11 @@
+<%= form_with url: "/bakeries/#{@bakery.id}/goods", method: :post, local: true do |form| %>
+<%= form.label :name %>
+<%= form.text_field :name %>
+<%= form.label :category %>
+<%= form.text_field :category %>
+<%= form.label :days_old %>
+<%= form.text_field :days_old %>
+<%= form.label :gluten_free %>
+<%= form.text_field :gluten_free%>
+<%=form.submit "Create Good" %>
+<% end %>

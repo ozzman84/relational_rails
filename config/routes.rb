@@ -30,4 +30,6 @@ Rails.application.routes.draw do
 
   #bakerygoods\
   get '/bakeries/:id/goods', to: 'bakery_goods#index'
+  get '/bakeries/:id/goods/new', to: 'bakery_goods#new'
+  post '/bakeries/:id/goods', to: 'bakery_goods#create'
 end
