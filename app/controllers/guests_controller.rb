@@ -9,16 +9,28 @@ class GuestsController < ApplicationController
 
   def new
     @guest = Guest.new
+    @bed = Bed.find(params[:id])
   end
 
   def create
-    bed = Beds.find(params[:id])
-    guest = bed.guests.create!({
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      rent: params[:rent],
-      visiting: params[:visiting]
-    })
+    bed = Bed.find(params[:id])
+    guest = bed.guests.create!(guest_params)
     redirect_to "/beds/#{bed.id}/guests"
+  end
+
+  def edit
+    @guest = Guest.find(params[:id])
+  end
+
+  def update
+    guest = Guest.find(params[:id])
+    guest.update(guest_params)
+    redirect_to "/guests/#{guest.id}"
+  end
+
+  private
+
+  def guest_params
+    params.permit(:first_name, :last_name, :rent, :visiting)
   end
 end
