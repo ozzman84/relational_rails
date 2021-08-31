@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get '/bakeries/:id', to: 'bakeries#show'
   get '/bakeries/:id/edit', to: 'bakeries#edit'
   patch '/bakeries/:id', to: 'bakeries#update'
+  delete ''
 
 
 

@@ -10,3 +10,5 @@
   <li><%=@bakery.review%></li>
   <li>Goods Availible:<%= @bakery.goods.count %></li>
 </ul>
+
+<%= button_to "Delete Bakery", "/bakeries/#{@bakery.id}", method: :delete %>
