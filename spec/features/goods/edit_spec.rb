@@ -12,7 +12,7 @@ RSpec.describe 'good edit' do
     days_old: 0,
     gluten_free: true,
     bakery_id: bakery_1.id
-  )
+    )
   visit "/goods/#{good_1.id}"
   click_link 'Update Good'
   expect(current_path).to eq("/goods/#{good_1.id}/edit")

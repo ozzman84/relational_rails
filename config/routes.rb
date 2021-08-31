@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get '/goods/:id', to: 'goods#show'
   get '/goods/:id/edit', to: 'goods#edit'
   patch '/goods/:id', to: 'goods#update'
+  delete '/goods/:id', to: 'goods#destroy'
 
 
   #bakerygoods\
