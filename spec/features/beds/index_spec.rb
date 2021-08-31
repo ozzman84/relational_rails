@@ -32,4 +32,12 @@ RSpec.describe "Parents name index", type: :feature do
 
     expect(current_path).to eq("/beds/#{@bed2.id}/edit")
   end
+
+  it 'contains link to delete each Guest' do
+    visit "/beds"
+
+    click_button "Delete #{@bed2.name}"
+
+    expect(current_path).to eq("/beds")
+  end
 end
