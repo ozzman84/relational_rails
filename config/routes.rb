@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/beds/:id/edit', to: 'beds#edit'
   patch '/beds/:id', to: 'beds#update'
   get '/beds/:id', to: 'beds#show'
+  delete '/beds/:id', to: 'beds#destroy'
 
   ##BedGuests
   get '/beds/:id/guests', to: 'beds#guests_index'

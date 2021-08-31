@@ -31,6 +31,12 @@ class BedsController < ApplicationController
     redirect_to '/beds'
   end
 
+  def destroy
+    bed = Bed.find(params[:id])
+    bed.destroy
+    redirect_to "/beds"
+  end
+
   private
 
   def bed_params
