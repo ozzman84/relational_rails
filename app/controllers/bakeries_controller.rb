@@ -25,6 +25,12 @@ class BakeriesController < ApplicationController
     redirect_to '/bakeries'
   end
 
+  def destroy
+    bakery = Bakery.find(params[:id])
+    bakery.destroy
+    redirect_to '/bakeries'
+  end
+
   def bakery_params
     params.permit(:name,:city,:delivery,:review)
   end
