@@ -10,6 +10,8 @@
     <li>Created at: <%= bed.created_at %></li>
     <li>Updated at: <%= bed.updated_at %></li>
   </ul>
+
+  <%= button_to "Delete #{bed.id}", "/beds/#{bed.id}", method: :delete %>
 <% end %>
 
 <h6><%= link_to "New Bed", "/beds/new" %></h6>

@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   ##Guests
   get '/guests', to: 'guests#index'
   get '/guests/:id/edit', to: 'guests#edit'
-  patch '/guests/:id', to: 'guests#update'
   get '/guests/:id', to: 'guests#show'
+  patch '/guests/:id', to: 'guests#update'
+  delete '/guests/:id', to: 'guests#destroy'
 
   ##BedGuests
   # get '/bedguests/:id/guests', to: 'bedguests#index'
@@ -20,8 +21,8 @@ Rails.application.routes.draw do
   get '/beds/new', to: 'beds#new'
   post '/beds', to: 'beds#create'
   get '/beds/:id/edit', to: 'beds#edit'
-  patch '/beds/:id', to: 'beds#update'
   get '/beds/:id', to: 'beds#show'
+  patch '/beds/:id', to: 'beds#update'
   delete '/beds/:id', to: 'beds#destroy'
 
   ##BedGuests

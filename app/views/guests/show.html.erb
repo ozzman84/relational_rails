@@ -1,4 +1,6 @@
 <h3><%= @guest.first_name %>  <%= @guest.last_name %></h3>
+
+
   <ul>
     <li>Rent: <%= @guest.rent %></li>
     <li>Visiting? <%= @guest.visiting %></li>
@@ -6,4 +8,5 @@
     <li>Updated at: <%= @guest.updated_at %></li>
   </ul>
 
+<%= button_to 'Delete', "/guests/#{@guest.id}", method: :delete %>
 <%= link_to "Edit", "/guests/#{@guest.id}/edit" %>

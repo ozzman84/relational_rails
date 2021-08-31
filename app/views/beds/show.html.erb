@@ -1,6 +1,7 @@
 <h3><a href="/beds/<%= @bed.id %>/guests"><%= @bed.name %></a></h3>
 
 <%= button_to 'Delete', "/beds/#{@bed.id}", method: :delete %>
+
   <ul>
     <li>Occupied: <%= @bed.occupied %></li>
     <li>Guess Count: <%= @bed.guest_count %></li>

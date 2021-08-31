@@ -28,6 +28,12 @@ class GuestsController < ApplicationController
     redirect_to "/guests/#{guest.id}"
   end
 
+  def destroy
+    guest = Guest.find(params[:id])
+    guest.destroy
+    redirect_to "/guests"
+  end
+
   private
 
   def guest_params
