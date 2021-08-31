@@ -1,5 +1,6 @@
 <h1><%= @bed.name %> Guests</h1>
 <h6><%= link_to "Create Guest", "/beds/#{@bed.id}/guests/new" %></h6>
+<%= link_to 'Sort Alfabetically', "/beds/#{@bed.id}/guests/new" %>
 
 <ul>
   <% @bed_guests.each do |guest| %>

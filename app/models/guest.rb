@@ -8,4 +8,5 @@ class Guest < ApplicationRecord
 
   scope :currently_visiting, -> { where(visiting: true) }
   #Where is the best place to list this scope
+  scope :name_asc, -> { order(:first_name) }
 end
