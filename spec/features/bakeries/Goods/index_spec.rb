@@ -7,18 +7,18 @@ RSpec.describe 'Bakery Goods index' do
       delivery: true,
       review: 5
     )
-    @good_1 = Good.create!(name: "Cinnamon Roll",
+    @good_1 = @bakery_1.goods.create!(name: "Cinnamon Roll",
     category: "Pastry",
     days_old: 0,
     gluten_free: true,
-    bakery_id: @bakery_1.id
+
   )
-  @good_2 = Good.create!(name: "Pumpkin Bread",
-  category: "Bread",
-  days_old: 1,
-  gluten_free: true,
-  bakery_id: @bakery_1.id
-)
+    @good_2 = @bakery_1.goods.create!(name: "Pumpkin Bread",
+    category: "Bread",
+    days_old: 1,
+    gluten_free: true,
+
+  )
   end
 
   it 'shows the name of all goods for a bakery ' do
@@ -53,5 +53,14 @@ RSpec.describe 'Bakery Goods index' do
     expect(current_path).to eq("/bakeries")
     expect(page).to have_content("All Bakeries")
     expect(page).to have_content(@bakery_1.name)
+  end
+
+  it 'has a link that can show the goods sorted alphabetically' do
+    visit "/bakeries/#{@bakery_1.id}/goods"
+
+    expect(page).to have_link('Alpha Order')
+    click_link('Alpha Order')
+    expect(current_path).to eq("/bakeries/#{@bakery_1.id}/goods")
+    expect(@good_1.name).to appear_before(@good_2.name)
   end
 end

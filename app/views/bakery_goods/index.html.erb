@@ -1,6 +1,7 @@
 <%=link_to "Goods Index", "/goods" %>
 <%= link_to "Bakeries Index", "/bakeries" %>
 <%= link_to "Create Good", "/bakeries/#{@bakery.id}/goods/new" %>
+<%= link_to "Alpha Order", "/bakeries/#{@bakery.id}/goods?order=name" %>
 <h1><%= @bakery.name %></h1>
 <ul>
   <% @goods.each do |good| %>

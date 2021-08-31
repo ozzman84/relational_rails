@@ -2,6 +2,11 @@ class BakeryGoodsController < ApplicationController
   def index
     @bakery = Bakery.find(params[:id])
     @goods = @bakery.goods
+    if params[:order] == "name"
+      @goods = @goods.sort_alpha
+    else
+      @goods = @bakery.goods
+    end
   end
 
   def new

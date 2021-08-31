@@ -12,4 +12,48 @@ describe Good, type: :model do
     it { should validate_presence_of(:category)}
     it { should validate_presence_of(:days_old)}
   end
+
+  describe '#true_only' do
+    it 'only shows goods where gluten free is true' do
+      bakery_1 = Bakery.create!(name: "Taste of Denmark",
+        city: "Lakewood",
+        delivery: false,
+        review: 5
+      )
+      good_1 = Good.create!(name: "Cinnamon Roll",
+      category: "Pastry",
+      days_old: 0,
+      gluten_free: false,
+      bakery_id: bakery_1.id
+    )
+      good_2 = Good.create!(name: "Pumpkin Bread",
+      category: "Bread",
+      days_old: 1,
+      gluten_free: true,
+      bakery_id: bakery_1.id
+    )
+      expect(Good.true_only).to eq([good_2])
+    end
+  end
+
+  describe '#sort_alpha' do
+    it 'sorts the goods in the bakery goods index' do
+      bakery_1 = Bakery.create!(name: "Taste of Denmark",
+        city: "Lakewood",
+        delivery: false,
+        review: 5
+      )
+      good_1 = bakery_1.goods.create!(name: "Cinnamon Roll",
+      category: "Pastry",
+      days_old: 0,
+      gluten_free: false,
+    )
+      good_2 = bakery_1.goods.create!(name: "Pumpkin Bread",
+      category: "Bread",
+      days_old: 1,
+      gluten_free: true,
+    )
+    expect(bakery_1.goods.sort_alpha).to eq([good_1, good_2])
+    end
+  end
 end

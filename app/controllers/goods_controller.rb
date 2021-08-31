@@ -1,13 +1,13 @@
 class GoodsController < ApplicationController
   def index
-    @goods = Good.all
+    @goods = Good.true_only
   end
 
   def show
     @good = Good.find(params[:id])
   end
 
-  
+
   def edit
     @good = Good.find(params[:id])
   end

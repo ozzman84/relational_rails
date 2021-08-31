@@ -7,16 +7,17 @@ RSpec.describe "goods index page" do
       delivery: true,
       review: 5
     )
-    @good_1 = Good.create!(name: "Cinnamon Roll",
+    @good_1 = @bakery_1.goods.create!(name: "Cinnamon Roll",
     category: "Pastry",
     days_old: 0,
     gluten_free: true,
-    bakery_id: @bakery_1.id
+
   )
-  @bakery_1 = Bakery.create!(name: "Taste of Denmark",
-    city: "Lakewood",
-    delivery: true,
-    review: 5
+  @good_2 = @bakery_1.goods.create!(name: "Pumpkin Bread",
+    category: "Bread",
+    days_old: 1,
+    gluten_free: false,
+
   )
 end
 
@@ -37,4 +38,14 @@ it 'can see all the goods in the index' do
     expect(page).to have_content("All Bakeries")
     expect(page).to have_content(@bakery_1.name)
   end
+
+  it ' only shows goods that have the true value for gluten free' do
+    visit '/goods'
+    expect(page).to have_content(@good_1.name)
+    expect(page).to have_no_content(@good_2.name)
+  end
+    it 'orders the goods alphabetically' do
+      visit '/goods'
+      expect(@bakery_1.goods.sort_alpha).to eq([@good_1, @good_2])
+    end
 end
