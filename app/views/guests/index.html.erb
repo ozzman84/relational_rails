@@ -1,11 +1,15 @@
-<h1>All Guests</h1>
+<h1>All Guests</h1><br/>
 
-  <ul>
-    <% @guests.each do |guest| %>
-    <h3><a href="/guests/<%= guest.id %>"><%= guest.first_name %>  <%= guest.last_name %></a></h3>
-      <li>Rent: <%= guest.rent %></li>
-      <li>Visiting? <%= guest.visiting %></li>
-      <li>Created at: <%= guest.created_at %></li>
-      <li>Updated at: <%= guest.updated_at %></li>
-    <% end %>
-  </ul>
+<ul>
+  <% @guests.each do |guest| %>
+  <h4><%= link_to "#{guest.first_name} #{guest.last_name}","/guests/#{guest.id}" %></h4>
+
+    <li><%= "Rent: #{guest.rent}" %></li>
+    <li><%= "Visiting: #{guest.visiting}" %></li>
+    <li><%= "Created at: #{guest.created_at}" %></li>
+    <li><%= "Updated at: #{guest.updated_at}" %></li>
+
+  <%= button_to "Edit #{guest.first_name}", "/guests/#{guest.id}/edit", method: :get %>
+  <%= button_to "Delete #{guest.first_name}", "/guests/#{guest.id}", method: :delete %><br/>
+  <% end %>
+</ul>

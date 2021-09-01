@@ -14,4 +14,20 @@ RSpec.describe 'child name & attribute show', type: :feature do
     expect(page).to have_content(@hook.rent)
     expect(page).to have_content(@hook.visiting)
   end
+
+  it 'contains link to edit each Guest' do
+    visit "/guests"
+
+    click_button "Edit #{@hook.first_name}"
+
+    expect(current_path).to eq("/guests/#{@hook.id}/edit")
+  end
+
+  it 'contains link to delete each Guest' do
+    visit "/guests"
+
+    click_button "Delete #{@hook.first_name}"
+
+    expect(current_path).to eq("/guests")
+  end
 end

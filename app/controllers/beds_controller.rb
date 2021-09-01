@@ -1,11 +1,11 @@
 class BedsController < ApplicationController
   def index
-    @beds = Bed.all.order(:created_at) #move order to Model.
+    @beds = Bed.all.order(:created_at)
   end
 
   def guests_index
     @bed = Bed.find(params[:id])
-    @bed_guests = Bed.find(params[:id]).guests.currently_visiting #refactor and move to BedGuestsController
+    @bed_guests = Bed.find(params[:id]).guests.currently_visiting
   end
 
   def new
@@ -29,6 +29,12 @@ class BedsController < ApplicationController
     bed = Bed.find(params[:id])
     bed.update(bed_params)
     redirect_to '/beds'
+  end
+
+  def destroy
+    bed = Bed.find(params[:id])
+    bed.destroy
+    redirect_to "/beds"
   end
 
   private

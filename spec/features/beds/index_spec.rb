@@ -18,4 +18,26 @@ RSpec.describe "Parents name index", type: :feature do
 
     expect(@master.name).to appear_before(@bed2.name)
   end
+
+  it 'contains link to edit Master Bed' do
+    visit '/beds'
+    click_button "Edit #{@master.name}"
+
+    expect(current_path).to eq("/beds/#{@master.id}/edit")
+  end
+
+  it 'contains link to edit 2nd Bed' do
+    visit '/beds'
+    click_button "Edit #{@bed2.name}"
+
+    expect(current_path).to eq("/beds/#{@bed2.id}/edit")
+  end
+
+  it 'contains link to delete each Guest' do
+    visit "/beds"
+
+    click_button "Delete #{@bed2.name}"
+
+    expect(current_path).to eq("/beds")
+  end
 end
