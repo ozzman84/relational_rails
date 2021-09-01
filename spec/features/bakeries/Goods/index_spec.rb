@@ -69,5 +69,14 @@ RSpec.describe 'Bakery Goods index' do
     visit "/bakeries/#{@bakery_1.id}/goods"
     expect(has_link?("Update #{@good_1.name}")).to eq(true)
     click_link "Update #{@good_1.name}"
+    expect(current_path).to eq("/goods/#{@good_1.id}/edit")
   end
+
+  it 'has a link to delete the good for each good' do
+  visit "/bakeries/#{@bakery_1.id}/goods"
+  expect(has_link?("Delete #{@good_1.name}")).to eq(true)
+  click_link "Delete #{@good_1.name}"
+  expect(current_path).to eq("/goods")
+  expect(page).to_not have_content(@good_1.name)
+end
 end

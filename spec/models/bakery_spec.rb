@@ -19,6 +19,10 @@ require 'rails_helper'
       delivery: true,
       review: 4
       )
+      @good_1 = @bakery_1.goods.create!(name: "Cinnamon Roll",
+      category: "Pastry",
+      days_old: 0,
+      gluten_free: true)
     end
 
     describe '#ordered_creation' do
@@ -26,5 +30,11 @@ require 'rails_helper'
         expected = [@bakery_2, @bakery_1]
       expect(Bakery.ordered_creation).to eq(expected)
       end
+    end
+
+    describe '#good_count' do
+      it 'counts the number of goods per bakery' do
+      expect(@bakery_1.goods_count).to eq(1)
+    end
     end
   end

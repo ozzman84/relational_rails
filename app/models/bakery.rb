@@ -10,4 +10,8 @@ class Bakery < ApplicationRecord
   def self.ordered_creation
     self.order(created_at: :desc)
   end
+
+  def goods_count
+    goods.count
+  end
 end

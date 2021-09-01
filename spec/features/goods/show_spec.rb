@@ -29,6 +29,8 @@ RSpec.describe "good show page" do
     expect(page).to have_content(@good_1.days_old)
     expect(page).to have_content(@good_1.gluten_free)
     expect(page). to have_content(@good_1.bakery_id)
+    expect(page). to have_content(@good_1.created_at)
+    expect(page). to have_content(@good_1.updated_at)
   end
   it 'has a link at the top that takes users to the parent index' do
     visit "/goods"

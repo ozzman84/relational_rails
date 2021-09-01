@@ -5,7 +5,8 @@
 <ul>
   <% @goods.each do |good| %>
   <h3>Good name:<%= good.name %></h3>
-  <%= link_to "Update #{good.name}", "/bakeries/#{@bakery.id}/goods/#{good.id}/edit" %>
+  <%= link_to "Update #{good.name}", "/goods/#{good.id}/edit" %>
+  <%= link_to "Delete #{good.name}", "/goods/#{good.id}", method: :delete %>
   <li>Good Category: <%= good.category%></li>
   <li>Days Old: <%= good.days_old %></li>
   <li>Gluten Free: <%= good.gluten_free %></li>

@@ -22,6 +22,8 @@ RSpec.describe 'Parents name index', type: :feature do
     expect(page).to have_content(@bakery_1.id)
     expect(page).to have_content(@bakery_1.delivery)
     expect(page).to have_content(@bakery_1.review)
+    expect(page).to have_content(@bakery_1.created_at)
+    expect(page).to have_content(@bakery_1.updated_at)
   end
 
   it 'has a link to its child index' do
@@ -41,5 +43,10 @@ RSpec.describe 'Parents name index', type: :feature do
     click_link(@bakery_1.name)
     expect(current_path).to eq("/bakeries/#{@bakery_1.id}/goods")
     expect(page).to have_content(@good_1.name)
+  end
+
+  it 'can count the number of goods a bakery has' do
+    visit "/bakeries/#{@bakery_1.id}"
+    expect(page).to have_content(@bakery_1.goods_count)
   end
 end
