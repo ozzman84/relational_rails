@@ -2,6 +2,9 @@ class BakeryGoodsController < ApplicationController
   def index
     @bakery = Bakery.find(params[:id])
     @goods = @bakery.goods
+    if params[:day_old_discount]
+      @goods = @goods.over_day(params[:day_old_discount])
+    end
   end
 
   def new

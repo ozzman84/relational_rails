@@ -54,4 +54,20 @@ RSpec.describe 'Bakery Goods index' do
     expect(page).to have_content("All Bakeries")
     expect(page).to have_content(@bakery_1.name)
   end
+
+  describe 'search by threshold' do
+    it 'has a link to the threshold form' do
+      visit "/bakeries/#{@bakery_1.id}/goods"
+      find_button('Add Filter')
+
+      fill_in('day_old_discount', with: 0)
+      expect(page).to have_content(@good_2.name)
+    end
+  end
+
+  it 'has a link to edit the good for each good' do
+    visit "/bakeries/#{@bakery_1.id}/goods"
+    expect(has_link?("Update #{@good_1.name}")).to eq(true)
+    click_link "Update #{@good_1.name}"
+  end
 end

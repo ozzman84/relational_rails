@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get '/bakeries/:id', to: 'bakeries#show'
   get '/bakeries/:id/edit', to: 'bakeries#edit'
   patch '/bakeries/:id', to: 'bakeries#update'
+  delete '/bakeries/:id', to: 'bakeries#destroy'
 
 
 
@@ -44,10 +45,12 @@ Rails.application.routes.draw do
   get '/goods/:id', to: 'goods#show'
   get '/goods/:id/edit', to: 'goods#edit'
   patch '/goods/:id', to: 'goods#update'
+  delete '/goods/:id', to: 'goods#destroy'
 
 
   #bakerygoods\
   get '/bakeries/:id/goods', to: 'bakery_goods#index'
   get '/bakeries/:id/goods/new', to: 'bakery_goods#new'
   post '/bakeries/:id/goods', to: 'bakery_goods#create'
+  get '/bakeries/:id/goods/:id/edit', to: 'bakery_goods#edit'
 end

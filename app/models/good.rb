@@ -6,4 +6,8 @@ class Good < ApplicationRecord
   validates :category, presence: true
   validates :days_old, presence: true
 
+  scope :over_day,->(days_old) {
+    where("days_old > ?", days_old)
+  }
+
 end

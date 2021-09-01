@@ -7,16 +7,10 @@ RSpec.describe "goods index page" do
       delivery: true,
       review: 5
     )
-    @good_1 = Good.create!(name: "Cinnamon Roll",
+    @good_1 = @bakery_1.goods.create!(name: "Cinnamon Roll",
     category: "Pastry",
     days_old: 0,
     gluten_free: true,
-    bakery_id: @bakery_1.id
-  )
-  @bakery_1 = Bakery.create!(name: "Taste of Denmark",
-    city: "Lakewood",
-    delivery: true,
-    review: 5
   )
 end
 
@@ -36,5 +30,18 @@ it 'can see all the goods in the index' do
     expect(current_path).to eq("/bakeries")
     expect(page).to have_content("All Bakeries")
     expect(page).to have_content(@bakery_1.name)
+  end
+  it 'has a link to edit the child for each good' do
+    visit '/goods'
+    expect(has_link?("Update #{@good_1.name}")).to eq(true)
+    click_link("Update #{@good_1.name}")
+    expect(current_path).to eq("/goods/#{@good_1.id}/edit")
+  end
+  it 'has a link to delete the good for each good' do
+    visit '/goods'
+    expect(has_link?("Delete #{@good_1.name}")).to eq(true)
+    click_link("Delete #{@good_1.name}")
+    expect(current_path).to eq("/goods")
+    expect(page).to_not have_content(@good_1.name)
   end
 end

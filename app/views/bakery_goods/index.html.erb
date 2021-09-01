@@ -5,9 +5,15 @@
 <ul>
   <% @goods.each do |good| %>
   <h3>Good name:<%= good.name %></h3>
+  <%= link_to "Update #{good.name}", "/bakeries/#{@bakery.id}/goods/#{good.id}/edit" %>
   <li>Good Category: <%= good.category%></li>
   <li>Days Old: <%= good.days_old %></li>
   <li>Gluten Free: <%= good.gluten_free %></li>
   <li>Bakery ID: <%= good.bakery_id %></li>
 </ul>
+<% end %>
+<%= form_with url: "/bakeries/#{@bakery.id}/goods?filter=days_old", method: :get, local: true do |form| %>
+<%= form.label 'Day Old Discount' %>
+<%= form.number_field :day_old_discount %>
+<%= form.submit "Add Filter" %>
 <% end %>
