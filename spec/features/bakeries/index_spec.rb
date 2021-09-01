@@ -1,4 +1,5 @@
 require 'rails_helper'
+#remove before each block
 
 RSpec.describe 'Parents name index', type: :feature do
   before :each do
@@ -12,8 +13,8 @@ RSpec.describe 'Parents name index', type: :feature do
     delivery: true,
     review: 4
     )
-    @good_1 = Good.create!(name:"Choc Cookie", category: "Cookie",
-    days_old: 0, gluten_free: true, bakery_id: @bakery_1.id)
+    @good_1 = @bakery_1.goods.create!(name:"Choc Cookie", category: "Cookie",
+    days_old: 0, gluten_free: true,)
   end
   it "can see all names of the parent index" do
 
@@ -30,5 +31,20 @@ RSpec.describe 'Parents name index', type: :feature do
     expect(current_path).to eq("/goods")
     expect(page).to have_content('All Goods')
     expect(page).to have_content(@good_1.name)
+  end
+
+  it 'has a link to update each bakery' do
+    visit '/bakeries'
+    expect(has_link?("Update #{@bakery_1.name}")).to eq(true)
+
+    click_link("Update #{@bakery_1.name}")
+    expect(current_path).to eq("/bakeries/#{@bakery_1.id}/edit")
+  end
+
+  it 'has a link to delete each bakery' do
+    visit '/bakeries'
+    expect(has_link?("Delete #{@bakery_1.name}")).to eq(true)
+    click_link("Delete #{@bakery_1.name}")
+
   end
 end

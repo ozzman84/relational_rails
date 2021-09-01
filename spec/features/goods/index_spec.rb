@@ -37,4 +37,8 @@ it 'can see all the goods in the index' do
     expect(page).to have_content("All Bakeries")
     expect(page).to have_content(@bakery_1.name)
   end
+
+  it 'has a link to update the good for each good' do
+    visit '/goods'
+  end
 end
