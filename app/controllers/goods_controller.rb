@@ -18,6 +18,12 @@ class GoodsController < ApplicationController
     redirect_to "/goods/#{good.id}"
   end
 
+  def destroy
+    good = Good.find(params[:id])
+    good.destroy
+    redirect_to '/goods'
+  end
+
   private
   def good_params
     params.permit(:name,:category,:days_old, :gluten_free)
