@@ -3,7 +3,7 @@
 <%=link_to "New Bakery", 'bakeries/new' %>
 <h1>All Bakeries</h1>
 <% @bakeries.each do |bakery| %>
-<h3><%= bakery.name %></h3>
+<h3><%= link_to "#{bakery.name}", "/bakeries/#{bakery.id}" %></h3>
 <%= link_to "Update #{bakery.name}", "/bakeries/#{bakery.id}/edit" %>
 <%= link_to "Delete #{bakery.name}", "/bakeries/#{bakery.id}", method: :delete %>
 <% end %>

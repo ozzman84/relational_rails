@@ -12,6 +12,12 @@ RSpec.describe "goods index page" do
     days_old: 0,
     gluten_free: true,
   )
+  @good_2 = @bakery_1.goods.create!(name: "Bread",
+  category: "Bread",
+  days_old: 0,
+  gluten_free: false,
+)
+
 end
 
 it 'can see all the goods in the index' do
@@ -31,6 +37,12 @@ it 'can see all the goods in the index' do
     expect(page).to have_content("All Bakeries")
     expect(page).to have_content(@bakery_1.name)
   end
+   it "only shows goods that have true for gluten free" do
+     visit "/goods"
+     expect(page).to have_content(@good_1.name)
+     expect(page).to have_no_content(@good_2.name)
+   end
+
   it 'has a link to edit the child for each good' do
     visit '/goods'
     expect(has_link?("Update #{@good_1.name}")).to eq(true)

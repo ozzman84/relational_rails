@@ -9,5 +9,7 @@ class Good < ApplicationRecord
   scope :over_day,->(days_old) {
     where("days_old > ?", days_old)
   }
-
+  def self.true_only
+    self.where("gluten_free = true")
+  end
 end

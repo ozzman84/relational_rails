@@ -13,7 +13,7 @@ RSpec.describe 'Parents name index', type: :feature do
     delivery: true,
     review: 4
     )
-    @good_1 = @bakery_1.goods.create!(name:"Choc Cookie", category: "Cookie",
+    @good_1 = @bakery_2.goods.create!(name:"Choc Cookie", category: "Cookie",
     days_old: 0, gluten_free: true,)
   end
   it "can see all names of the parent index" do
@@ -23,14 +23,33 @@ RSpec.describe 'Parents name index', type: :feature do
     expect(page).to have_content(@bakery_2.name)
   end
 
-  it 'has a link to its child index' do
+  it 'has a link to the bakeries show page' do
     visit '/bakeries'
-    expect(page).to have_link('Goods Index')
+    expect(page).to have_link("#{@bakery_1.name}")
+    click_link("#{@bakery_1.name}")
+    expect(current_path).to eq("/bakeries/#{@bakery_1.id}")
+  end
 
-    click_link('Goods Index')
-    expect(current_path).to eq("/goods")
-    expect(page).to have_content('All Goods')
-    expect(page).to have_content(@good_1.name)
+  it 'sorts by most recently created' do
+    visit '/bakeries'
+    expect(@bakery_2.name).to appear_before(@bakery_1.name)
+  end
+
+  it 'can be redirected to from any page' do
+    visit '/bakeries'
+    expect(page).to have_link('Bakeries Index')
+
+    visit "/bakeries/#{@bakery_1.id}"
+    expect(page).to have_link('Bakeries Index')
+
+    visit "/goods"
+    expect(page).to have_link('Bakeries Index')
+
+    visit "/goods/#{@good_1.id}"
+    expect(page).to have_link('Bakeries Index')
+
+    visit "/bakeries/#{@bakery_1.id}/goods"
+    expect(page).to have_link('Bakeries Index')
   end
 
   it 'has a link to update each bakery' do
@@ -46,6 +65,6 @@ RSpec.describe 'Parents name index', type: :feature do
     expect(has_link?("Delete #{@bakery_1.name}")).to eq(true)
     click_link("Delete #{@bakery_1.name}")
     expect(current_path).to eq("/bakeries")
-    # expect(page).to_not have_content(@bakery_1.name)
+    expect(page).to_not have_content(@bakery_1.name)
   end
 end
