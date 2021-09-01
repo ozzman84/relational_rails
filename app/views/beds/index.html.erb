@@ -1,7 +1,9 @@
 <h1>All Beds</h1>
 
+<h6><%= link_to "New Bed", "/beds/new" %></h6>
+
 <% @beds.each do |bed| %>
-  <h3><a href="/beds/<%= bed.id %>"><%= bed.name %></a></h3>
+  <h3><%= link_to "#{bed.name}", "/beds/#{bed.id}" %></h3>
   <ul>
     <li>Occupied: <%= bed.occupied %></li>
     <li>Guest Availability: <%= bed.guest_count %></li>
@@ -10,8 +12,6 @@
     <li>Updated at: <%= bed.updated_at %></li>
   </ul>
 
-  <h6><%= button_to "Edit #{bed.name}", "/beds/#{bed.id}/edit", method: :get %></h6>
+  <%= button_to "Edit #{bed.name}", "/beds/#{bed.id}/edit", method: :get %>
   <%= button_to "Delete #{bed.name}", "/beds/#{bed.id}", method: :delete %>
 <% end %>
-
-<h6><%= link_to "New Bed", "/beds/new" %></h6>

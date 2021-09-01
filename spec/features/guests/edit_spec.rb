@@ -15,14 +15,14 @@ require 'rails_helper'
 
 RSpec.describe 'Guest Edit' do
   before :each do
-    test_bed = Bed.create!(name: "test bed", occupied: true, guest_count: 0)
-    @guest = Guest.create!(bed_id: test_bed.id,first_name: 'Jon', last_name: 'Smith', rent: 300, visiting: true)
+    @test_bed = Bed.create!(name: "test bed", occupied: true, guest_count: 0)
+    @guest = Guest.create!(bed_id: @test_bed.id,first_name: 'Jon', last_name: 'Smith', rent: 300, visiting: true)
   end
 
   it 'links to Guest edit page from show page' do
     visit "/guests/#{@guest.id}"
 
-    click_link "Edit"
+    click_button "Edit"
 
     expect(current_path).to eq("/guests/#{@guest.id}/edit")
   end
@@ -31,10 +31,12 @@ RSpec.describe 'Guest Edit' do
     visit "/guests/#{@guest.id}"
 
     expect(page).to have_content('Jon')
-
-    click_link "Edit"
+    click_button "Edit"
 
     fill_in 'First name', with: 'John'
+    fill_in 'Last name', with: 'Smith'
+    fill_in 'Rent', with: 200
+    fill_in 'Visiting', with: 'true'
     click_button "Update ID: #{@guest.id}"
 
     expect(current_path).to eq("/guests/#{@guest.id}")

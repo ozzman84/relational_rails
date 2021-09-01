@@ -1,24 +1,25 @@
-<h1><%= @bed.name %> Guests</h1>
-<h6><%= link_to "Create Guest", "/beds/#{@bed.id}/guests/new" %></h6>
-<%= link_to 'Sort Alfabetically', "/beds/#{@bed.id}/guests?sort=alfa" %>
+<h1><%= "#{@bed.name} Guests" %></h1>
 
 <ul>
   <% if params[:sort] == 'alfa' %>
     <% @bed_guests.name_asc.each do |guest| %>
-    <h3><%= link_to "#{guest.first_name} #{guest.last_name}", "/guests/#{guest.id}" %>
-      <li>Rent: <%= guest.rent %></li>
-      <li>Visiting: <%= guest.visiting %></li>
-      <li>Created at: <%= guest.created_at %></li>
-      <li>Updated at: <%= guest.updated_at %></li>
+    <h3><%= link_to "#{guest.first_name} #{guest.last_name}", "/guests/#{guest.id}" %></h3>
+      <li><%= "Rent: #{guest.rent}" %></li>
+      <li><%= "Visiting: #{guest.visiting}" %></li>
+      <li><%= "Created at: #{guest.created_at}" %></li>
+      <li><%= "Updated at: #{guest.updated_at}" %></li>
     <% end %>
 
   <% else %>
     <% @bed_guests.each do |guest| %>
     <h3><%= link_to "#{guest.first_name} #{guest.last_name}", "/guests/#{guest.id}" %>
-      <li>Rent: <%= guest.rent %></li>
-      <li>Visiting: <%= guest.visiting %></li>
-      <li>Created at: <%= guest.created_at %></li>
-      <li>Updated at: <%= guest.updated_at %></li>
+      <li><%= "Rent: #{guest.rent}" %></li>
+      <li><%= "Visiting: #{guest.visiting}" %></li>
+      <li><%= "Created at: #{guest.created_at}" %></li>
+      <li><%= "Updated at: #{guest.updated_at}" %></li>
     <% end %>
   <% end %>
 </ul>
+
+<h6><%= link_to "Create Guest", "/beds/#{@bed.id}/guests/new" %></h6>
+<%= link_to 'Sort Alfabetically', "/beds/#{@bed.id}/guests?sort=alfa" %>
