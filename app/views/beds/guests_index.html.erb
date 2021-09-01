@@ -3,11 +3,11 @@
 <%# <%= form_for(@guest, :url => { :action => "index" }, :html => {:method => :get} ) do |f| %>
 <%# <%= f.text_field(:filter) %> %>
 
-<%= form_with url: "/beds/#{@bed.id}/guests", method: :post, local: true do |f| %>
+<%= form_with url: "/beds/#{@bed.id}/guests?filter=params[:filter]", method: :post, local: true do |f| %>
   <%= f.label :filter %><br/>
-  <%= f.submit "Update #{@bed.name}?filter=[:filter]" %>
   <%= "#{f.number_field :filter}" %>
-<% end %>()
+  <%= f.submit "Filter" %>
+<% end %>
 
 <ul>
   <% if params[:sort] == 'alfa' %>
