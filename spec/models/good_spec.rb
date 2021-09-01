@@ -57,4 +57,25 @@ describe Good, type: :model do
      expect(Good.true_only).to eq([good_2])
    end
  end
+
+ it 'can order alphabetically' do
+   bakery_1 = Bakery.create!(name: "Taste of Denmark",
+     city: "Lakewood",
+     delivery: false,
+     review: 5
+   )
+   good_1 = Good.create!(name: "Cinnamon Roll",
+   category: "Pastry",
+   days_old: 0,
+   gluten_free: false,
+   bakery_id: bakery_1.id
+ )
+   good_2 = Good.create!(name: "Pumpkin Bread",
+   category: "Bread",
+   days_old: 1,
+   gluten_free: true,
+   bakery_id: bakery_1.id
+ )
+ expect(Good.alpha).to eq([good_1,good_2])
+ end
 end

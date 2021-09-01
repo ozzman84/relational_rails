@@ -37,6 +37,12 @@ RSpec.describe 'Bakery Goods index' do
     expect(page).to have_content(@good_2.bakery_id)
   end
 
+  it 'has a link to view alphabetical order' do
+    visit "/bakeries/#{@bakery_1.id}/goods"
+    click_link("Alphabetical")
+    expect(@good_1.name).to appear_before(@good_2.name)
+  end
+
 
   describe 'search by threshold' do
     it 'has a link to the threshold form' do
