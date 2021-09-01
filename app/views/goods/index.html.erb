@@ -8,4 +8,6 @@
   <li><%= good.gluten_free %></li>
   <li><%= good.bakery_id %></li>
 </ul>
+<%= link_to "Update #{good.name}", "/goods/#{good.id}/edit" %>
+<%= link_to "Delete #{good.name}", "/goods/#{good.id}", method: :delete %>
 <% end %>

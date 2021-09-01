@@ -50,4 +50,5 @@ Rails.application.routes.draw do
   get '/bakeries/:id/goods', to: 'bakery_goods#index'
   get '/bakeries/:id/goods/new', to: 'bakery_goods#new'
   post '/bakeries/:id/goods', to: 'bakery_goods#create'
+  get '/bakeries/:id/goods/:id/edit', to: 'bakery_goods#edit'
 end

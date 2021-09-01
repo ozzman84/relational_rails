@@ -1,5 +1,5 @@
 require 'rails_helper'
-#remove before each block
+#remove before each
 
 RSpec.describe 'Parents name index', type: :feature do
   before :each do
@@ -45,6 +45,7 @@ RSpec.describe 'Parents name index', type: :feature do
     visit '/bakeries'
     expect(has_link?("Delete #{@bakery_1.name}")).to eq(true)
     click_link("Delete #{@bakery_1.name}")
-
+    expect(current_path).to eq("/bakeries")
+    # expect(page).to_not have_content(@bakery_1.name)
   end
 end
