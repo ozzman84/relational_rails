@@ -8,4 +8,5 @@ class Guest < ApplicationRecord
 
   scope :currently_visiting, -> { where(visiting: true) }
   scope :name_asc, -> { order(:first_name) }
+  scope :threshold, ->(num) { where('rent > ?', num) }
 end
