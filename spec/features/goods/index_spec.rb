@@ -12,6 +12,12 @@ RSpec.describe "goods index page" do
     days_old: 0,
     gluten_free: true,
   )
+  @good_2 = @bakery_1.goods.create!(name: "Bread",
+  category: "Bread",
+  days_old: 0,
+  gluten_free: false,
+)
+
 end
 
 it 'can see all the goods in the index' do
@@ -23,14 +29,37 @@ it 'can see all the goods in the index' do
   expect(page).to have_content(@good_1.bakery_id)
   end
 
-  it 'has a link at the top that takes users to the parent index' do
-    visit "/goods"
-    expect(page).to have_link("Bakeries Index")
-    click_link("Bakeries Index")
-    expect(current_path).to eq("/bakeries")
-    expect(page).to have_content("All Bakeries")
-    expect(page).to have_content(@bakery_1.name)
+  it 'has a link to the goods show page' do
+    visit '/goods'
+    expect(page).to have_link("#{@good_1.name}")
+    click_link("#{@good_1.name}")
+    expect(current_path).to eq("/goods/#{@good_1.id}")
   end
+
+   it "only shows goods that have true for gluten free" do
+     visit "/goods"
+     expect(page).to have_content(@good_1.name)
+     expect(page).to have_no_content(@good_2.name)
+   end
+
+   it 'can be redirected to from any page' do
+     visit "/bakeries"
+     expect(page).to have_link("All Goods")
+
+     visit "/bakeries/#{@bakery_1.id}"
+     expect(page).to have_link("All Goods")
+
+     visit "/goods"
+     expect(page).to have_link("All Goods")
+
+     visit "/goods/#{@good_1.id}"
+     expect(page).to have_link("All Goods")
+
+     visit "/bakeries/##{@bakery_1.id}/goods"
+     expect(page).to have_link("All Goods")
+   end
+
+
   it 'has a link to edit the child for each good' do
     visit '/goods'
     expect(has_link?("Update #{@good_1.name}")).to eq(true)

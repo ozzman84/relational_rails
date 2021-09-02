@@ -4,6 +4,8 @@ class BakeryGoodsController < ApplicationController
     @goods = @bakery.goods
     if params[:day_old_discount]
       @goods = @goods.over_day(params[:day_old_discount])
+    elsif params[:order] == "name"
+      @goods.alpha
     end
   end
 

@@ -1,7 +1,6 @@
-<%= link_to "Bakeries Index", "/bakeries" %>
 <h1>All Goods</h1>
 <% @goods.each do |good| %>
-<h3><%= good.name %></h3>
+<h3><%= link_to "#{good.name}", "/goods/#{good.id}" %></h3>
 <ul>
   <li><%= good.category %></li>
   <li><%= good.days_old %></li>

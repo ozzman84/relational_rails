@@ -22,16 +22,8 @@ RSpec.describe 'Parents name index', type: :feature do
     expect(page).to have_content(@bakery_1.id)
     expect(page).to have_content(@bakery_1.delivery)
     expect(page).to have_content(@bakery_1.review)
-  end
-
-  it 'has a link to its child index' do
-    visit '/bakeries'
-    expect(page).to have_link('Goods Index')
-
-    click_link('Goods Index')
-    expect(current_path).to eq("/goods")
-    expect(page).to have_content('All Goods')
-    expect(page).to have_content(@good_1.name)
+    expect(page).to have_content(@bakery_1.created_at)
+    expect(page).to have_content(@bakery_1.updated_at)
   end
 
   it 'has a link to take it to the childs index page' do
@@ -41,5 +33,22 @@ RSpec.describe 'Parents name index', type: :feature do
     click_link(@bakery_1.name)
     expect(current_path).to eq("/bakeries/#{@bakery_1.id}/goods")
     expect(page).to have_content(@good_1.name)
+  end
+
+  it 'can count the number of goods a bakery has' do
+    visit "/bakeries/#{@bakery_1.id}"
+    expect(page).to have_content(@bakery_1.goods_count)
+  end
+
+  it 'has a link to update the bakery' do
+    visit "/bakeries/#{@bakery_1.id}"
+    expect(page).to have_link("Update Bakery")
+    click_link("Update Bakery")
+    expect(current_path).to eq("/bakeries/#{@bakery_1.id}/edit")
+  end
+
+  it "has a link to delete a bakery" do
+    visit "/bakeries/#{@bakery_1.id}"
+    expect(page).to have_button("Delete Bakery")
   end
 end

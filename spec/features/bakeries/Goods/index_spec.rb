@@ -37,23 +37,15 @@ RSpec.describe 'Bakery Goods index' do
     expect(page).to have_content(@good_2.bakery_id)
   end
 
-  it 'has a link to its child index' do
-    visit '/bakeries'
-    expect(page).to have_link('Goods Index')
-
-    click_link('Goods Index')
-    expect(current_path).to eq("/goods")
-    expect(page).to have_content('All Goods')
-    expect(page).to have_content(@good_1.name)
+  it 'has a link to view alphabetical order' do
+    visit "/bakeries/#{@bakery_1.id}/goods"
+    click_link("Alphabetical")
+    expect(@good_1.name).to appear_before(@good_2.name)
   end
-  it 'has a link at the top that takes users to the parent index' do
-    visit "/goods"
-    expect(page).to have_link("Bakeries Index")
-    click_link("Bakeries Index")
-    expect(current_path).to eq("/bakeries")
-    expect(page).to have_content("All Bakeries")
-    expect(page).to have_content(@bakery_1.name)
-  end
+    it 'has a link to add a new good' do
+      visit "/bakeries/#{@bakery_1.id}/goods"
+      expect(page).to have_link("Create Good")
+    end
 
   describe 'search by threshold' do
     it 'has a link to the threshold form' do
@@ -69,5 +61,14 @@ RSpec.describe 'Bakery Goods index' do
     visit "/bakeries/#{@bakery_1.id}/goods"
     expect(has_link?("Update #{@good_1.name}")).to eq(true)
     click_link "Update #{@good_1.name}"
+    expect(current_path).to eq("/goods/#{@good_1.id}/edit")
   end
+
+  it 'has a link to delete the good for each good' do
+  visit "/bakeries/#{@bakery_1.id}/goods"
+  expect(has_link?("Delete #{@good_1.name}")).to eq(true)
+  click_link "Delete #{@good_1.name}"
+  expect(current_path).to eq("/goods")
+  expect(page).to_not have_content(@good_1.name)
+end
 end

@@ -29,13 +29,17 @@ RSpec.describe "good show page" do
     expect(page).to have_content(@good_1.days_old)
     expect(page).to have_content(@good_1.gluten_free)
     expect(page). to have_content(@good_1.bakery_id)
+    expect(page). to have_content(@good_1.created_at)
+    expect(page). to have_content(@good_1.updated_at)
   end
-  it 'has a link at the top that takes users to the parent index' do
-    visit "/goods"
-    expect(page).to have_link("Bakeries Index")
-    click_link("Bakeries Index")
-    expect(current_path).to eq("/bakeries")
-    expect(page).to have_content("All Bakeries")
-    expect(page).to have_content(@bakery_1.name)
+
+  it 'has a link to update a good' do
+    visit "/goods/#{@good_1.id}"
+    expect(page).to have_link("Update Good")
+  end
+
+  it "has a linnk to delete a good" do
+    visit "/goods/#{@good_1.id}"
+    expect(page).to have_button("Delete Good")
   end
 end

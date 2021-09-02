@@ -1,12 +1,12 @@
-<%=link_to "Goods Index", "/goods" %>
-<%= link_to "Bakeries Index", "/bakeries" %>
 <%= link_to "Update Good", "/goods/#{@good.id}/edit" %>
 <h1><%=@good.name%></h1>
 <ul>
-  <li><%= @good.id %></li>
-  <li><%= @good.category %></li>
-  <li><%= @good.days_old %></li>
-  <li><%= @good.gluten_free%></li>
-  <li><%= @good.bakery_id %></li>
+  <li>Good Id: <%= @good.id %></li>
+  <li>Good Category: <%= @good.category %></li>
+  <li>Good Days Old: <%= @good.days_old %></li>
+  <li>Gluten Free? <%= @good.gluten_free%></li>
+  <li> Bakery Id:<%= @good.bakery_id %></li>
+  <li> created_at<%= @good.created_at %> </li>
+  <li> updated_at <%= @good.updated_at  %> </li>
 </ul>
 <%= button_to "Delete Good", "/goods/#{@good.id}", method: :delete %>
