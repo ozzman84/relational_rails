@@ -5,7 +5,13 @@ class BedsController < ApplicationController
 
   def guests_index
     @bed = Bed.find(params[:id])
-    @bed_guests = Bed.find(params[:id]).guests.currently_visiting
+    if params[:sort]
+      @bed_guests = Bed.find(params[:id]).guests.currently_visiting.name_asc
+    elsif params[:filter]
+      @bed_guests = Bed.find(params[:id]).guests.currently_visiting.threshold(params[:filter])
+    else
+      @bed_guests = Bed.find(params[:id]).guests.currently_visiting
+    end
   end
 
   def new

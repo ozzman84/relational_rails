@@ -1,34 +1,23 @@
 <h1><%= "#{@bed.name} Guests" %></h1>
 
-<%# <%= form_for(@guest, :url => { :action => "index" }, :html => {:method => :get} ) do |f| %>
-<%# <%= f.text_field(:filter) %> %>
-
-<%= form_with url: "/beds/#{@bed.id}/guests?filter=params[:filter]", method: :post, local: true do |f| %>
-  <%= f.label :filter %><br/>
-  <%= "#{f.number_field :filter}" %>
+<%= link_to 'Sort Alfabetically', "/beds/#{@bed.id}/guests?sort=alfa" %>
+<%= form_with url: "/beds/#{@bed.id}/guests?", method: :get, local: true do |f| %>
+  <%= f.label :filter, "Only return records with more than #{params[:filter]} in rent." %><br/>
+  <%= f.number_field :filter %>
   <%= f.submit "Filter" %>
 <% end %>
 
 <ul>
-  <% if params[:sort] == 'alfa' %>
-    <% @bed_guests.name_asc.each do |guest| %>
-    <h3><%= link_to "#{guest.first_name} #{guest.last_name}", "/guests/#{guest.id}" %></h3>
-      <li><%= "Rent: #{guest.rent}" %></li>
-      <li><%= "Visiting: #{guest.visiting}" %></li>
-      <li><%= "Created at: #{guest.created_at}" %></li>
-      <li><%= "Updated at: #{guest.updated_at}" %></li>
-    <% end %>
+  <% @bed_guests.each do |guest| %>
+  <h3><%= link_to "#{guest.first_name} #{guest.last_name}", "/guests/#{guest.id}" %></h3>
+    <li><%= "Rent: #{guest.rent}" %></li>
+    <li><%= "Visiting: #{guest.visiting}" %></li>
+    <li><%= "Created at: #{guest.created_at}" %></li>
+    <li><%= "Updated at: #{guest.updated_at}" %></li>
 
-  <% else %>
-    <% @bed_guests.each do |guest| %>
-    <h3><%= link_to "#{guest.first_name} #{guest.last_name}", "/guests/#{guest.id}" %>
-      <li><%= "Rent: #{guest.rent}" %></li>
-      <li><%= "Visiting: #{guest.visiting}" %></li>
-      <li><%= "Created at: #{guest.created_at}" %></li>
-      <li><%= "Updated at: #{guest.updated_at}" %></li>
-    <% end %>
+    <h6><%= button_to "Edit #{guest.first_name}", "/beds/#{guest.id}/edit", method: :get %></h6>
+    <h6><%= button_to "Delete #{guest.first_name}", "/beds/#{guest.id}", method: :delete %></h6>
   <% end %>
 </ul>
 
 <h6><%= link_to "Create Guest", "/beds/#{@bed.id}/guests/new" %></h6>
-<%= link_to 'Sort Alfabetically', "/beds/#{@bed.id}/guests?sort=alfa" %>

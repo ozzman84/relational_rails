@@ -8,8 +8,8 @@ require 'rails_helper'
 RSpec.describe 'parents chidren index' do
   before :each do
     @bed    = Bed.create!(name: 'Master Bed', occupied: true, guest_count: 0)
-    @hook   = Guest.create!(bed_id: @bed.id, first_name: 'Captain', last_name: 'Hook', rent: 300, visiting: true)
-    @gaston = Guest.create!(bed_id: @bed.id, first_name: 'Gaston', last_name: 'Hunterson', rent: 300, visiting: true)
+    @hook   = Guest.create!(bed_id: @bed.id, first_name: 'Captain', last_name: 'Hook', rent: 100, visiting: true)
+    @gaston = Guest.create!(bed_id: @bed.id, first_name: 'Gaston', last_name: 'Hunterson', rent: 200, visiting: true)
     @scar   = Guest.create!(bed_id: @bed.id, first_name: 'Scar', last_name: 'Lionsmain', rent: 300, visiting: false)
     @bed2   = Bed.create!(name: 'Other Bed', occupied: true, guest_count: 2)
     @jafar  = Guest.create!(bed_id: @bed2.id, first_name: 'Jafar', last_name: 'Skinnybeard', rent: 300, visiting: true)
@@ -22,8 +22,6 @@ RSpec.describe 'parents chidren index' do
     expect(page).to have_content(@hook.last_name)
     expect(page).to have_content(@hook.rent)
     expect(page).to have_content(@hook.visiting)
-    #add another guest for tests
-
     expect(page).not_to have_content(@jafar.first_name)
     expect(page).not_to have_content(@jafar.first_name)
   end
@@ -46,5 +44,16 @@ RSpec.describe 'parents chidren index' do
     click_link('Sort Alfabetically')
 
     expect('Captain').to appear_before('Gaston')
+  end
+
+  it 'returns guests above a given rent threshold' do
+    visit "/beds/#{@bed.id}/guests"
+
+    fill_in('filter', with: 150)
+    click_button('Filter')
+
+    expect(current_path).to eq("/beds/#{@bed.id}/guests")
+    expect(page).to have_content(200)
+    expect(page).not_to have_content(100)
   end
 end
