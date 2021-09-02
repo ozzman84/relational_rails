@@ -2,10 +2,12 @@
 <% @goods.each do |good| %>
 <h3><%= link_to "#{good.name}", "/goods/#{good.id}" %></h3>
 <ul>
-  <li><%= good.category %></li>
-  <li><%= good.days_old %></li>
-  <li><%= good.gluten_free %></li>
-  <li><%= good.bakery_id %></li>
+  <li>Good Category: <%= good.category %></li>
+  <li>Days Old: <%= good.days_old %></li>
+  <li>Gluten Free: <%= good.gluten_free %></li>
+  <li>Bakery ID: <%= good.bakery_id %></li>
+  <li>Created At: <%=good.created_at%> </li>
+  <li> Updated At <%=good.updated_at%> </li>
 </ul>
 <%= link_to "Update #{good.name}", "/goods/#{good.id}/edit" %>
 <%= link_to "Delete #{good.name}", "/goods/#{good.id}", method: :delete %>

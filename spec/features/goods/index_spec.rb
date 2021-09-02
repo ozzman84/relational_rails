@@ -27,6 +27,8 @@ it 'can see all the goods in the index' do
   expect(page).to have_content(@good_1.days_old)
   expect(page).to have_content(@good_1.gluten_free)
   expect(page).to have_content(@good_1.bakery_id)
+  expect(page).to have_content(@good_1.created_at)
+  expect(page).to have_content(@good_1.updated_at)
   end
 
   it 'has a link to the goods show page' do
