@@ -3,7 +3,7 @@
 <%= link_to "Alphabetical", "/bakeries/#{@bakery.id}/goods?order=name" %>
 <ul>
   <% @goods.each do |good| %>
-  <h3>Good name:<%= good.name %></h3>
+  <h3>Good name:<%= link_to "#{good.name}", "/goods/#{good.id}"%></h3>
   <%= link_to "Update #{good.name}", "/goods/#{good.id}/edit" %>
   <%= link_to "Delete #{good.name}", "/goods/#{good.id}", method: :delete %>
   <li>Good Category: <%= good.category%></li>

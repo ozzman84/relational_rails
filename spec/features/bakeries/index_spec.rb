@@ -37,19 +37,19 @@ RSpec.describe 'Parents name index', type: :feature do
 
   it 'can be redirected to from any page' do
     visit '/bakeries'
-    expect(page).to have_link('Bakeries Index')
+    expect(page).to have_link('All Bakery')
 
     visit "/bakeries/#{@bakery_1.id}"
-    expect(page).to have_link('Bakeries Index')
+    expect(page).to have_link('All Bakery')
 
     visit "/goods"
-    expect(page).to have_link('Bakeries Index')
+    expect(page).to have_link('All Bakery')
 
     visit "/goods/#{@good_1.id}"
-    expect(page).to have_link('Bakeries Index')
+    expect(page).to have_link('All Bakery')
 
     visit "/bakeries/#{@bakery_1.id}/goods"
-    expect(page).to have_link('Bakeries Index')
+    expect(page).to have_link('All Bakery')
   end
 
   it 'has a link to update each bakery' do

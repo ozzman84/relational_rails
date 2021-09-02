@@ -1,13 +1,12 @@
 <%= link_to "Update Bakery", "/bakeries/#{@bakery.id}/edit"%>
 <h3><a href="/bakeries/<%=@bakery.id%>/goods"><%= @bakery.name%></a></h3>
-<h1><%= @bakery.name%></h1>
 <ul>
-  <li>Bakery ID:<%= @bakery.id %></li>
-  <li>Bakery City:<%= @bakery.city%></li>
-  <li>Delivery?<%= @bakery.delivery%></li>
-  <li>Review out of 5<%= @bakery.review%></li>
-  <li>Goods Availible<%= @bakery.goods_count %></li>
-  <li>Created At<%= @bakery.created_at  %></li>
-  <li>Updated At<%= @bakery.updated_at %> </li>
+  <li>Bakery ID: <%= @bakery.id %></li>
+  <li>Bakery City: <%= @bakery.city%></li>
+  <li>Delivery: <%= @bakery.delivery%></li>
+  <li>Review out of 5: <%= @bakery.review%></li>
+  <li>Goods Availible: <%= @bakery.goods_count %></li>
+  <li>Created At: <%= @bakery.created_at  %></li>
+  <li>Updated At: <%= @bakery.updated_at %> </li>
 </ul>
 <%= button_to "Delete Bakery", "/bakeries/#{@bakery.id}", method: :delete %>

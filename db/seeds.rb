@@ -19,6 +19,6 @@ Guest.create!(bed_id: bed.id, first_name: 'Gaston', last_name: 'Hunterson', rent
 
 bakery_1 = Bakery.create!(name: "Taste of Denmark", city: "Lakewood", delivery: true, review: 5)
 bakery_2 = Bakery.create!(name:"Bread", city: "Durango", delivery: true, review: 4)
-good_1 = Good.create!(name: "Pumpkin Bread", category: "Bread", days_old: 2, gluten_free: true, bakery_id: bakery_1.id)
-good_2 = Good.create!(name: "Cinnamon Roll", category: "Pastry", days_old: 0, gluten_free: false, bakery_id: bakery_1.id)
+good_1 = Good.create!(name: "Bread", category: "Bread", days_old: 2, gluten_free: false, bakery_id: bakery_1.id)
+good_2 = Good.create!(name: "Cinnamon Roll", category: "Pastry", days_old: 0, gluten_free: true, bakery_id: bakery_1.id)
 good_3 = Good.create!(name: "Chocolate Chip Cookie", category: "Cookie", days_old: 1, gluten_free: true, bakery_id: bakery_2.id)

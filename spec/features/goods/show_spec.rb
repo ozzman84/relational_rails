@@ -40,6 +40,6 @@ RSpec.describe "good show page" do
 
   it "has a linnk to delete a good" do
     visit "/goods/#{@good_1.id}"
-    expect(page).to have_link("Delete Good")
+    expect(page).to have_button("Delete Good")
   end
 end
